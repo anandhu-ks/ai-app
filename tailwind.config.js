@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         opentext: ['OpenText'],
+        opendisplay: ['OpenDisplay']
       },
       colors: {
         primary: "#232224",

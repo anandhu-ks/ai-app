@@ -37,3 +37,10 @@
   font-weight: 700; /* Bold */
   font-style: normal;
 }
+
+@font-face {
+  font-family: "OpenDisplay";
+  src: url("/assets/fonts/OPENDisplay-Regular.otf") format("opentype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
