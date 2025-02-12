@@ -19,16 +19,24 @@
     </button>
 
     <div class="font-medium text-lg flex items-center justify-between mt-8">
-      <span> Recent Chat </span>
+      <span class="tracking-wider"> Recent Chat </span>
+      <mat-icon svgIcon="three-dots" class="cursor-pointer"></mat-icon>
     </div>
 
     <!-- Footer / Logout -->
     <div class="mt-auto">
-      <button
-        class="w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
-      >
-        Logout
-      </button>
+      <div class="flex justify-between cursor-pointer">
+        <div class="flex space-x-3">
+          <mat-icon svgIcon="apps"></mat-icon>
+          <span>AI Agents</span>
+        </div>
+        <mat-icon svgIcon="launch"></mat-icon>
+      </div>
+
+      <div class="flex space-x-3 mt-3">
+        <mat-icon svgIcon="settings"></mat-icon>
+        <span>Settings</span>
+      </div>
     </div>
   </div>
 </div>
