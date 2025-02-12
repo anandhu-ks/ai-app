@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "OpenText";
+  src: url("/assets/fonts/OPENText-Light.otf") format("opentype");
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "OpenText";
+  src: url("/assets/fonts/OPENText-Regular.otf") format("opentype");
+  font-weight: 400; /* Regular */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "OpenText";
+  src: url("/assets/fonts/OPENText-Medium.otf") format("opentype");
+  font-weight: 500; /* Medium */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "OpenText";
+  src: url("/assets/fonts/OPENText-Thin.otf") format("opentype");
+  font-weight: 200; /* Thin */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "OpenText";
+  src: url("/assets/fonts/OPENText-Bold.otf") format("opentype");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+}
