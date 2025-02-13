@@ -1,0 +1,58 @@
+<div class="max-w-[780px] text-secondary">
+  <div
+    #welcomeText
+    class="text-5xl leading-[72px] text-center font-opendisplay"
+  >
+    Welcome
+  </div>
+  <div #subText class="mt-2 text-base text-center">
+    The power of AI at your service - Tame the knowledge !
+  </div>
+  <div class="relative w-full mt-10">
+    <textarea
+      #textarea
+      (input)="adjustHeight(textarea)"
+      placeholder="“Show me the insights for 2025”"
+      class="w-full shadow-lg py-4 min-h-[40px] max-h-[200px] overflow-y-auto px-5 pr-12 text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-40 bg-white bg-opacity-5 rounded-2xl resize-none outline-none focus:ring-1 focus:ring-white focus:ring-opacity-40"
+      rows="1"
+      (keydown.enter)="$event.preventDefault()"
+    ></textarea>
+
+    <!-- Icon inside the textarea -->
+    <button
+      class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-opacity-60 hover:text-opacity-100"
+      #starButton
+    >
+      <div class="relative">
+        <mat-icon
+          class="!absolute !w-2 !h-2 -left-2 top-0 star-1"
+          svgIcon="star"
+        ></mat-icon>
+
+        <mat-icon
+          class="!absolute !w-3 !h-3 -left-2 bottom-1 star-2"
+          svgIcon="star"
+        ></mat-icon>
+
+        <mat-icon class="star-3" svgIcon="star"></mat-icon>
+      </div>
+    </button>
+  </div>
+
+  <div class="mt-11 grid grid-cols-3 gap-x-8">
+    @for (item of gridInfo; track $index) {
+    <div
+      #gridItem
+      class="p-4 bg-white bg-opacity-10 rounded-3xl relative overflow-hidden"
+    >
+      <div
+        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 shimmer"
+      ></div>
+      <img [src]="item.imageUrl" alt="item" />
+      <div class="mt-2 text-base font-medium">{{ item.label }}</div>
+      <div class="mt-2 font-thin">{{ item.info }}</div>
+    </div>
+
+    }
+  </div>
+</div>

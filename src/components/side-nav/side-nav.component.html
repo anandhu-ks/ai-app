@@ -1,29 +1,26 @@
-<div class="sticky top-0 p-4 min-w-[300px] h-screen">
+<!-- <div class="sticky top-0 p-4 min-w-[300px] h-screen">
   <div
     class="border border-[rgba(255,255,255,0.1)] rounded-2xl flex flex-col shadow-xl h-full p-6 overflow-y-auto"
   >
-    <!-- Logo Section -->
     <div class="flex justify-between">
       <img
         class="w-24 h-6"
-        src="https://open-frontend-bucket.s3.amazonaws.com/logos/logo-type-purple.svg"
+        src="https://open-frontend-bucket.s3.amazonaws.com/ai-agents/open-logo.svg"
         alt="open-logo"
       />
     </div>
 
-    <!-- New Chat Button -->
     <button
-      class="mt-8 bg-white text-black py-3 font-medium text-center rounded-[10px] shadow-md border"
+      class="mt-8 w-[240px] h-[40px] bg-white text-black font-medium text-center rounded-[10px] shadow-md border"
     >
       + New Chat
     </button>
 
-    <div class="font-medium text-lg flex items-center justify-between mt-8">
+    <div class="flex items-center justify-between mt-8">
       <span class="tracking-wider"> Recent Chat </span>
       <mat-icon svgIcon="three-dots" class="cursor-pointer"></mat-icon>
     </div>
 
-    <!-- Footer / Logout -->
     <div class="mt-auto">
       <div class="flex justify-between cursor-pointer">
         <div class="flex space-x-3">
@@ -36,6 +33,106 @@
       <div class="flex space-x-3 mt-3">
         <mat-icon svgIcon="settings"></mat-icon>
         <span>Settings</span>
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+<!-- sidebar.component.html -->
+<div
+  class="sticky top-0 left-0 p-4 h-screen"
+  (mouseenter)="changeState(); animateLogoIn()"
+  (mouseleave)="changeState(); animateLogoOut()"
+>
+  <div
+    class="h-full border border-[rgba(255,255,255,0.1)] rounded-2xl transition-width overflow-hidden"
+    [ngClass]="isHovered ? 'w-[240px]' : 'w-16'"
+  >
+    <div class="flex flex-col h-full p-4">
+      <!-- Logo -->
+      <div class="h-6 overflow-hidden flex justify-between">
+        <img
+          #logoElement
+          class="w-24 h-6 transition-opacity duration-300"
+          [src]="isHovered ? expandedLogo : collapsedLogo"
+          alt="open-logo"
+        />
+        @if(isHovered){
+        <button (click)="isPinned = !isPinned">
+          <mat-icon
+            [ngClass]="isPinned ? 'opacity-100' : 'opacity-50'"
+            svgIcon="expand"
+          ></mat-icon>
+        </button>
+        }
+      </div>
+
+      <!-- New Chat Button -->
+      <div class="relative mt-8">
+        <button
+          class="h-10 bg-white text-black font-medium rounded-lg shadow transition-width flex items-center justify-center overflow-hidden"
+          [ngClass]="isHovered ? 'w-full' : 'w-8'"
+        >
+          @if(!isHovered){
+          <span #logoElement class="absolute text-base left-[10px]">+</span>
+          }
+
+          <span
+            class="whitespace-nowrap transition-opacity duration-100"
+            [ngClass]="isHovered ? 'opacity-100' : 'opacity-0'"
+          >
+            <span class="text-base mr-1">+</span> New Chat
+          </span>
+        </button>
+      </div>
+
+      <!-- Recent Chat Section -->
+      <div class="flex justify-between items-center mt-8 text-white">
+        <span
+          class="tracking-wider whitespace-nowrap transition-opacity duration-300"
+          [ngClass]="isHovered ? 'opacity-100' : 'opacity-0'"
+        >
+          Recent Chat
+        </span>
+        <mat-icon svgIcon="three-dots" class="cursor-pointer"></mat-icon>
+      </div>
+
+      <!-- Bottom Menu -->
+      <div class="mt-auto mb-4">
+        <div
+          class="flex justify-between items-center cursor-pointer text-white"
+        >
+          <div class="flex items-center">
+            <span class="min-w-6 flex justify-center">
+              <mat-icon svgIcon="apps"></mat-icon>
+            </span>
+            <span
+              class="ml-3 whitespace-nowrap transition-opacity duration-300"
+              [ngClass]="isHovered ? 'opacity-100' : 'opacity-0'"
+            >
+              AI Agents
+            </span>
+          </div>
+          <mat-icon
+            svgIcon="launch"
+            class="transition-opacity duration-300"
+            [ngClass]="isHovered ? 'opacity-100' : 'opacity-0'"
+          >
+          </mat-icon>
+        </div>
+
+        <div class="flex items-center mt-3 text-white">
+          <span class="min-w-6 flex justify-center">
+            <mat-icon svgIcon="settings"></mat-icon>
+          </span>
+          <span
+            class="ml-3 whitespace-nowrap transition-opacity duration-300"
+            [ngClass]="isHovered ? 'opacity-100' : 'opacity-0'"
+          >
+            Settings
+          </span>
+        </div>
       </div>
     </div>
   </div>

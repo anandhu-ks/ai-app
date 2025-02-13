@@ -21,7 +21,8 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "@/components": ["src/components/index.ts"]
+      "@/components": ["src/components/index.ts"],
+      "@/constants": ["src/constants/index.ts"]
     }
   },
   "angularCompilerOptions": {

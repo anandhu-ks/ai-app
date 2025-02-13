@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{html,js}"],
+  content: ["src/**/*.{html,js}",
+    "src/components/**/*.{html,ts,css,scss}"
+
+  ],
   theme: {
     extend: {
       fontFamily: {
@@ -9,6 +12,7 @@ export default {
       },
       colors: {
         primary: "#232224",
+        secondary: "#E5E5E5"
       }
     },
   },
