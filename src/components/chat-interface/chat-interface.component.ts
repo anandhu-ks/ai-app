@@ -60,7 +60,7 @@ export class ChatInterfaceComponent {
     if (this._allowAutoScroll) {
       try {
         this.chatContainer.nativeElement.scrollTop =
-          this.chatContainer.nativeElement.scrollHeight;
+          this.chatContainer.nativeElement.scrollHeight + 500;
       } catch (err) {
         console.log('Scroll error:', err);
       }
