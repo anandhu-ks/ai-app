@@ -1,9 +1,23 @@
-import { Component, computed, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  computed,
+  effect,
+  inject,
+} from '@angular/core';
 import { SideNavComponent } from '../side-nav/side-nav.component';
 import { ChatWelcomeComponent } from '../chat-welcome/chat-welcome.component';
 import { ChatService } from '@/services';
 import { ChatInputComponent } from '@/ui';
-import { trigger, transition, style, animate, state } from '@angular/animations';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  state,
+} from '@angular/animations';
+import { MarkdownModule } from 'ngx-markdown';
 
 @Component({
   selector: 'app-chat-interface',
@@ -11,6 +25,7 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
     SideNavComponent,
     ChatWelcomeComponent,
     ChatInputComponent,
+    MarkdownModule,
   ],
   standalone: true,
   templateUrl: './chat-interface.component.html',
@@ -30,20 +45,34 @@ import { trigger, transition, style, animate, state } from '@angular/animations'
 export class ChatInterfaceComponent {
   private chatService = inject(ChatService);
   chatArray = computed(() => this.chatService.chatArray());
+  public isStreaming = computed(() => this.chatService.isStreaming());
+  @ViewChild('chatContainer') private chatContainer!: ElementRef;
+  private _allowAutoScroll = false;
 
-  // constructor() {
-  //   this.chatService.getStreamData().subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //     },
-  //     error: (err) => console.log(err),
-  //     complete: () => console.log('complete'),
-  //   });
-  // }
-
-
-  splitMarkdown(message: string): string[] {
-    return message.split(/\n\n/); // Split by double newlines (Markdown block separation)
+  constructor() {
+    effect(() => {
+      this._allowAutoScroll = !!(this.isStreaming() || this.chatArray());
+      this._tryAutoScroll();
+    });
   }
-  
+
+  private _tryAutoScroll() {
+    if (this._allowAutoScroll) {
+      try {
+        this.chatContainer.nativeElement.scrollTop =
+          this.chatContainer.nativeElement.scrollHeight;
+      } catch (err) {
+        console.log('Scroll error:', err);
+      }
+    }
+  }
+
+  onScroll(event: Event) {
+    const element = event.target as HTMLDivElement;
+    const threshold = 1;
+    const atBottom =
+      element.scrollHeight - element.scrollTop <=
+      element.clientHeight + threshold;
+    this._allowAutoScroll = atBottom;
+  }
 }
