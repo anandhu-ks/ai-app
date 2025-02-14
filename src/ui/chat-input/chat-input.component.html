@@ -1,0 +1,19 @@
+<div class="relative w-full">
+  <textarea
+    [(ngModel)]="userInput"
+    #textarea
+    (input)="adjustHeight(textarea)"
+    placeholder="“Show me the insights for 2025”"
+    class="w-full shadow-lg py-4 min-h-[62px] max-h-[200px] overflow-y-auto px-5 pr-12 text-white text-opacity-100 placeholder:text-white placeholder:text-opacity-40 bg-white bg-opacity-5 rounded-2xl resize-none outline-none focus:ring-1 focus:ring-white focus:ring-opacity-40"
+    rows="1"
+    (keydown.enter)="$event.preventDefault(); onSendChat()"
+  ></textarea>
+
+  <!-- Icon inside the textarea -->
+  <button
+    (click)="onSendChat()"
+    class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-opacity-60 hover:text-opacity-100"
+  >
+    <mat-icon class="!w-[14px] !h-[14px]" svgIcon="chat-send"></mat-icon>
+  </button>
+</div>

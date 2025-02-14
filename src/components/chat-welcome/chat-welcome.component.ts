@@ -9,11 +9,12 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import gsap from 'gsap';
+import { ChatInputComponent } from '@/ui';
 
 @Component({
   selector: 'app-chat-welcome',
   standalone: true,
-  imports: [MatIconModule],
+  imports: [MatIconModule, ChatInputComponent],
   templateUrl: './chat-welcome.component.html',
   styleUrl: './chat-welcome.component.css',
 })
@@ -26,7 +27,6 @@ export class ChatWelcomeComponent implements AfterViewInit {
   public gridInfo = CHAT_WELCOME_INFO;
 
   ngAfterViewInit() {
-    this._animateStar();
     this._animateGrid();
     this._animateText();
   }
@@ -34,40 +34,6 @@ export class ChatWelcomeComponent implements AfterViewInit {
   adjustHeight(textarea: HTMLTextAreaElement) {
     textarea.style.height = 'auto';
     textarea.style.height = textarea.scrollHeight + 'px';
-  }
-
-  private _animateStar() {
-    gsap
-      .timeline({ repeat: -1, yoyo: true })
-      .to('.star-1', {
-        opacity: 0.5,
-        scale: 1.2,
-        duration: 1,
-        delay: 0.5,
-        ease: 'power1.inOut',
-      })
-      .to(
-        '.star-2',
-        {
-          opacity: 0.6,
-          delay: 0.5,
-          scale: 1.1,
-          duration: 1,
-          ease: 'power1.inOut',
-        },
-        '-=0.3'
-      )
-      .to(
-        '.star-3',
-        {
-          opacity: 0.3,
-          delay: 0.5,
-          scale: 1.1,
-          duration: 1,
-          ease: 'power1.inOut',
-        },
-        '-=0.3'
-      );
   }
 
   private _animateText() {
@@ -93,8 +59,8 @@ export class ChatWelcomeComponent implements AfterViewInit {
       tl.to(
         grid.nativeElement,
         {
-          scale: 1.01, 
-          duration: 1, 
+          scale: 1.01,
+          duration: 1,
           ease: 'power1.inOut',
         },
         `start-${index}`

@@ -61,6 +61,7 @@
         @if(isHovered){
         <button (click)="isPinned = !isPinned">
           <mat-icon
+            class="cursor-pointer"
             [ngClass]="isPinned ? 'opacity-100' : 'opacity-50'"
             svgIcon="expand"
           ></mat-icon>
@@ -116,13 +117,13 @@
           </div>
           <mat-icon
             svgIcon="launch"
-            class="transition-opacity duration-300"
+            class="transition-opacity duration-300 text-white"
             [ngClass]="isHovered ? 'opacity-100' : 'opacity-0'"
           >
           </mat-icon>
         </div>
 
-        <div class="flex items-center mt-3 text-white">
+        <div class="flex items-center mt-3 text-white cursor-pointer">
           <span class="min-w-6 flex justify-center">
             <mat-icon svgIcon="settings"></mat-icon>
           </span>
